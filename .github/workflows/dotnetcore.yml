@@ -40,7 +40,7 @@ jobs:
         if: ${{ contains(matrix.target-platform, 'osx-x64' )}}
         uses: actions/upload-artifact@v2
         with:
-          name: StationHub-${{ matrix.target-platform }}
+          name: StationHub.app
           path: ~/publish/StationHub.app
       - name: Upload Build
         if: ${{ !contains(matrix.target-platform, 'osx-x64' )}}
