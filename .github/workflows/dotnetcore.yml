@@ -32,7 +32,7 @@ jobs:
         run: |
           dotnet publish --configuration Release --runtime ${{ matrix.target-platform }} -t:BundleApp -p:RuntimeIdentifier=${{ matrix.target-platform }} -p:UseAppHost=true --output ~/publish \
           && chmod +x ~/publish/StationHub.app/Contents/MacOS/StationHub \
-          && mkdir ~/publish/MacOS
+          && mkdir ~/publish/MacOS \
           && mv ~/publish/StationHub.app ~/publish/MacOS/StationHub.app
       - name: Publish
         if: ${{ !contains(matrix.target-platform, 'osx-x64' )}}
