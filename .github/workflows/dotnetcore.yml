@@ -34,6 +34,8 @@ jobs:
       - if: ${{ matrix.target-platform != "osx-x64"}}
         run: |
           dotnet publish --configuration Release --runtime ${{ matrix.target-platform }} --output ~/publish
+      - run: |
+          echo "Done building.
       - name: Upload Build
         uses: actions/upload-artifact@v2
         with:
