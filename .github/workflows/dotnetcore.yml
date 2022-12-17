@@ -32,8 +32,8 @@ jobs:
         run: |
           dotnet publish --configuration Release --runtime ${{ matrix.target-platform }} -t:BundleApp -p:RuntimeIdentifier=${{ matrix.target-platform }} -p:UseAppHost=true --output ~/publish \
           && chmod +x ~/publish/StationHub.app/Contents/MacOS/StationHub \
-          && mv ~/publish/StationHub.app ~/publish/StationHubApp \
-          && zip -r ~/publish/StationHub.app ~/publish/StationHubApp
+          && mkdir ~/publish/MacOS
+          && mv ~/publish/StationHub.app ~/publish/MacOS/StationHub.app
       - name: Publish
         if: ${{ !contains(matrix.target-platform, 'osx-x64' )}}
         run: |
@@ -42,8 +42,8 @@ jobs:
         if: ${{ contains(matrix.target-platform, 'osx-x64' )}}
         uses: actions/upload-artifact@v2
         with:
-          name: StationHub.app
-          path: ~/publish/StationHub.app
+          name: StationHub-${{ matrix.target-platform }}
+          path: ~/publish/MacOS/StationHub.app
       - name: Upload Build
         if: ${{ !contains(matrix.target-platform, 'osx-x64' )}}
         uses: actions/upload-artifact@v2
